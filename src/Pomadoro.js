@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react'
 
 function Pomadoro() {
-    const [minutes,setMinutes] = useState(24);
-    const [seconds,setSeconds] = useState(59);
+    const [minutes,setMinutes] = useState(60);
+    const [seconds,setSeconds] = useState(0);
     const [displayMessage,setDisplayMessage] = useState(false);
     const [isPause,setIsPause] = useState(false)
 
@@ -15,7 +15,7 @@ function Pomadoro() {
                         setSeconds(59)
                         setMinutes(minutes-1)
                     }else{
-                        let minutes = displayMessage ? 24 : 4;
+                        let minutes = displayMessage ? 60 : 4;
                         let seconds = 59;
                         setSeconds(seconds);
                         setMinutes(minutes);
