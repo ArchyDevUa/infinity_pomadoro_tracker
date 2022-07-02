@@ -26,7 +26,6 @@ function Pomadoro() {
                 }
             }
         },1000)
-        console.log('some blabla lbs')
     }, [seconds,isPause])
 
     function changePause(){
