@@ -4,26 +4,34 @@ function Pomadoro() {
     const [minutes,setMinutes] = useState(24);
     const [seconds,setSeconds] = useState(59);
     const [displayMessage,setDisplayMessage] = useState(false);
+    const [isPause,setIsPause] = useState(false)
 
     useEffect(() => {
         let interval = setInterval(()=>{
             clearInterval(interval)
-            if(seconds === 0){
-                if(minutes !== 0){
-                    setSeconds(59)
-                    setMinutes(minutes-1)
+            if(isPause === true){
+                if(seconds === 0){
+                    if(minutes !== 0){
+                        setSeconds(59)
+                        setMinutes(minutes-1)
+                    }else{
+                        let minutes = displayMessage ? 24 : 4;
+                        let seconds = 59;
+                        setSeconds(seconds);
+                        setMinutes(minutes);
+                        setDisplayMessage(!displayMessage);
+                    }
                 }else{
-                    let minutes = displayMessage ? 24 : 4;
-                    let seconds = 59;
-                    setSeconds(seconds);
-                    setMinutes(minutes);
-                    setDisplayMessage(!displayMessage);
+                    setSeconds(seconds - 1)
                 }
-            }else{
-                setSeconds(seconds - 1)
             }
         },1000)
-    }, [seconds])
+        console.log('some blabla lbs')
+    }, [seconds,isPause])
+
+    function changePause(){
+        setIsPause(!isPause)
+    }
 
     const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
@@ -32,6 +40,12 @@ function Pomadoro() {
     <div className='pomadoro'>
         {displayMessage && (<div className="message">Время на перерыв, новая сессия начнется через</div>)}
         <div className="timer">{timerMinutes}:{timerSeconds}</div>
+        <button 
+            className="btn" 
+            onClick={()=> changePause()}>
+                {isPause ? ('Пауза') : ('Старт')}
+                
+        </button>
     </div>
   )
 }
