@@ -1,10 +1,12 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect} from 'react';
+import tomato from './assets/tomato.svg';
 
 function Pomadoro() {
     const [minutes,setMinutes] = useState(60);
     const [seconds,setSeconds] = useState(0);
     const [displayMessage,setDisplayMessage] = useState(false);
     const [isPause,setIsPause] = useState(false)
+    const [tomatoCount, setTomatoCount] = useState([])
 
     useEffect(() => {
         let interval = setInterval(()=>{
@@ -15,11 +17,14 @@ function Pomadoro() {
                         setSeconds(59)
                         setMinutes(minutes-1)
                     }else{
-                        let minutes = displayMessage ? 60 : 4;
+                        let minutes = displayMessage ? 59 : 0;
                         let seconds = 59;
                         setSeconds(seconds);
                         setMinutes(minutes);
                         setDisplayMessage(!displayMessage);
+                        if(!displayMessage){
+                            setTomatoCount([...tomatoCount,'p'])
+                        }
                     }
                 }else{
                     setSeconds(seconds - 1)
@@ -37,6 +42,17 @@ function Pomadoro() {
     
   return (
     <div className='pomadoro'>
+        <div>
+            
+            {
+                tomatoCount.map(() => {
+                    return(
+                        <img className="tomato_img" src={tomato}/>
+                    )
+                })
+            }
+        </div>
+        
         {displayMessage && (<div className="message">Время на перерыв, новая сессия начнется через</div>)}
         <div className="timer">{timerMinutes}:{timerSeconds}</div>
         <button 

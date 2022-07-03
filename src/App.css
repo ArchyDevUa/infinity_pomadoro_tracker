@@ -90,3 +90,6 @@ button.btn {
 button.btn:active {
   transform: translate(0em, 0.3em);
 }
+.tomato_img{
+  height:1em;
+}
