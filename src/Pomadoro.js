@@ -37,7 +37,6 @@ function Pomadoro() {
                 }
             }
         },1000)
-        console.log(tomatoCount)
     }, [seconds,isPause])
 
     function changePause(){
