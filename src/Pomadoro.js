@@ -9,6 +9,11 @@ function Pomadoro() {
     const [tomatoCount, setTomatoCount] = useState([])
 
     useEffect(() => {
+
+        if(localStorage.getItem('tomato') !== null){
+            setTomatoCount(localStorage.getItem('tomato').split(","))
+        }
+
         let interval = setInterval(()=>{
             clearInterval(interval)
             if(isPause === true){
@@ -17,13 +22,14 @@ function Pomadoro() {
                         setSeconds(59)
                         setMinutes(minutes-1)
                     }else{
-                        let minutes = displayMessage ? 59 : 0;
+                        let minutes = displayMessage ? 59 : 4;
                         let seconds = 59;
                         setSeconds(seconds);
                         setMinutes(minutes);
                         setDisplayMessage(!displayMessage);
                         if(!displayMessage){
-                            setTomatoCount([...tomatoCount,'p'])
+                            // setTomatoCount([...tomatoCount,'p'])
+                            localStorage.setItem('tomato',[...tomatoCount,'p'])
                         }
                     }
                 }else{
@@ -31,6 +37,7 @@ function Pomadoro() {
                 }
             }
         },1000)
+        console.log(tomatoCount)
     }, [seconds,isPause])
 
     function changePause(){
@@ -45,9 +52,9 @@ function Pomadoro() {
         <div>
             
             {
-                tomatoCount.map(() => {
+                tomatoCount.map((pom,index) => {
                     return(
-                        <img className="tomato_img" src={tomato}/>
+                        <img key={index} className="tomato_img" src={tomato}/>
                     )
                 })
             }
