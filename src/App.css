@@ -17,7 +17,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -48,14 +48,19 @@ body{
 }
 
 .App{
-  display: flex;
+  
   height: 100%;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 .pomadoro{
   font-size: 6em;
+}
+.container{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .message{
@@ -92,4 +97,23 @@ button.btn:active {
 }
 .tomato_img{
   height:1em;
+}
+.header{
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: end;
+  padding: 0.5em;
+}
+.header img{
+  height: 0.6em;
+  cursor: pointer;
+}
+.input{
+  padding: 10px;
+  font-size: 0.5em;
+  border-radius: 1em;
+  background-color: #eabf9f;
+  color: #1e212d;
+  border: none;
+  width: 3em;
 }
